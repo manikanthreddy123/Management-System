@@ -37,7 +37,7 @@ CREATE TABLE books (
 
 ## Contributors
 
-- Sai Kiran
+- Manikanth Reddy
 
 Feel free to contribute to the project or report issues.
 
