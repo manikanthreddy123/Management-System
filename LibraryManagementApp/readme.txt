@@ -9,17 +9,17 @@ CREATE DATABASE library;
 USE library;
 
 CREATE TABLE books (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  author VARCHAR(255) NOT NULL,
-  isbn VARCHAR(13) NOT NULL UNIQUE,
+ id INT AUTO_INCREMENT NOT NULL,
+  title VARCHAR(100) NOT NULL,
+  author VARCHAR(100) NOT NULL,
+  isbn VARCHAR(13) PRIMARY KEY,
   publication_year INT NOT NULL,
-  genre VARCHAR(255)
+  genre VARCHAR(100)
 );
 
 ## Setup
 
-1. Set up a SQL database (MySQL) and create a database called `library`.
+1. Set up a SQL database (MySQL) and create a database called `librarydb`.
 2. Run the SQL script provided in `Step 2` of the project setup to create the `books` table.
 
 ## Running the Application
@@ -39,5 +39,5 @@ CREATE TABLE books (
 
 - Manikanth Reddy
 
-Feel free to contribute to the project or report issues.
+
 

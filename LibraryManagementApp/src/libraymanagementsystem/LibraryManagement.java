@@ -1,35 +1,33 @@
-package assignment;
+package libraymanagementsystem;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class LibraryManagementApp {
-    private LibraryDatabase libraryDB;
+public class LibraryManagement {
+    private LibraryDatabaseActions libraryDB;
 
-    public LibraryManagementApp() {
-        libraryDB = new LibraryDatabase();
+    public LibraryManagement() {
+           libraryDB = new LibraryDatabaseActions();
     }
 
-    public void start() throws NotUniqueBookException, InvalidISBNException, BookNotFoundException {
-       
+        public void proceed() throws NotUniqueBookException,  BookNotFoundException , InvalidISBNException{
     	Scanner scanner = new Scanner(System.in);
-
         while (true) {
-            System.out.println("Library Management System Menu:");
-            System.out.println("1. Add a book");
-            System.out.println("2. Display all books");
-            System.out.println("3. Edit book details");
-            System.out.println("4. Delete a book");
-            System.out.println("5. Exit");
+            System.out.println("Library Management System :");
+            System.out.println("1. To add a book");
+            System.out.println("2. To display all books");
+            System.out.println("3. To update book details");
+            System.out.println("4. To delete a book");
+            System.out.println("5. To exit from it");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
+            scanner.nextLine(); 
 
             switch (choice) {
                 case 1:
-                    // Add a book
+                    // To add a book
                     System.out.println("Enter the book details:");
-                    Book newBook = new Book();
+                    Details newBook = new Details();
                     System.out.print("Title: ");
                     newBook.setTitle(scanner.nextLine());
                     System.out.print("Author: ");
@@ -38,31 +36,31 @@ public class LibraryManagementApp {
                     newBook.setIsbn(scanner.nextLine());
                     System.out.print("Publication Year: ");
                     newBook.setPublicationYear(scanner.nextInt());
-                    scanner.nextLine(); // Consume the newline character
+                    scanner.nextLine(); 
                     System.out.print("Genre: ");
                     newBook.setGenre(scanner.nextLine());
                     libraryDB.addBook(newBook);
-                    System.out.println("Book added successfully!");
+                    System.out.println("Book is 1added successfully!");
                     break;
 
                 case 2:
-                    // Display all books
-                    List<Book> books = libraryDB.getAllBooks();
-                    if (books.isEmpty()) {
+                    // To display all the books
+                    List<Details> d = libraryDB.getAllBooks();
+                    if (d.isEmpty()) {
                         System.out.println("The library is empty.");
                     } else {
                         System.out.println("List of all books in the library:");
-                        for (Book book : books) {
-                            System.out.println(book.getTitle() + " by " + book.getAuthor());
+                        for (Details details : d) {
+                        System.out.println(details.getTitle());
                         }
                     }
                     break;
 
                 case 3:
-                    // Edit book details
+                    // To update book details
                     System.out.println("Enter the ISBN of the book you want to edit:");
                     String isbnToEdit = scanner.nextLine();
-                    Book updatedBook = new Book();
+                    Details updatedBook = new Details();
                     updatedBook.setIsbn(isbnToEdit);
                     System.out.print("New Title: ");
                     updatedBook.setTitle(scanner.nextLine());
@@ -73,12 +71,12 @@ public class LibraryManagementApp {
                     scanner.nextLine(); // Consume the newline character
                     System.out.print("New Genre: ");
                     updatedBook.setGenre(scanner.nextLine());
-                    libraryDB.editBook(isbnToEdit, updatedBook);
+                    libraryDB.newBook(isbnToEdit, updatedBook);
                     System.out.println("Book details updated successfully!");
                     break;
 
                 case 4:
-                    // Delete a book
+                    // To delete a book
                     System.out.println("Enter the ISBN of the book you want to delete:");
                     String isbnToDelete = scanner.nextLine();
                     libraryDB.deleteBook(isbnToDelete);
@@ -97,16 +95,16 @@ public class LibraryManagementApp {
         }
     }
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
        
-    	LibraryManagementApp app = new LibraryManagementApp();
+    	LibraryManagement lm = new LibraryManagement();
         try {
-            app.start();
+            lm.proceed();
         } catch (NotUniqueBookException e) {
             System.out.println("Error: " + e.getMessage());
-        } catch (InvalidISBNException e) {
+        } catch (InvalidISBNException e)   {
             System.out.println("Error: " + e.getMessage());
-        } catch (BookNotFoundException e) {
+        } catch (BookNotFoundException e)  {
             System.out.println("Error: " + e.getMessage());
         }
     }
