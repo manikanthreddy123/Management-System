@@ -1,6 +1,6 @@
 package libraymanagementsystem;
 
-public class Details {
+public class Details   {
     private int id;
     private String title;
     private String author;
